@@ -43,7 +43,7 @@ public class SinglePlayerMovement : MonoBehaviourPun
     }
 
     private void FixedUpdate()
-    { 
+    {
         // 如果没连上服务器就滚蛋
         if (!(photonView.IsMine && PhotonNetwork.IsConnected))
             return;

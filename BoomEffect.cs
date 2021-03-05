@@ -9,6 +9,7 @@ public class BoomEffect : MonoBehaviour
     public int particleNum = 10;
 
     public float boomForce = 0.5f;
+    
     // Start is called before the first frame update
     void Start()
     {
@@ -22,7 +23,6 @@ public class BoomEffect : MonoBehaviour
             {
                 Vector3 explosionDir = new Vector3(Random.Range(-1f, 1f), Random.Range(0, 1), Random.Range(-1f, 1f));
                 rigid.AddForce(explosionDir.normalized * boomForce, ForceMode.Impulse);
-                
             }
         }
     }
@@ -30,6 +30,6 @@ public class BoomEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+
     }
 }
