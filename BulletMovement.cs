@@ -23,10 +23,9 @@ public class BulletMovement : MonoBehaviour
 
     private void OnCollisionEnter(Collision other)
     {
-        if (other.collider.CompareTag("Wall"))
-        {
-            Destroy(gameObject);
-            Instantiate(boomEffect, transform.position, Quaternion.identity);
-        }
+
+        Destroy(gameObject);
+        Instantiate(boomEffect, transform.position, Quaternion.identity);
+        
     }
 }

@@ -9,14 +9,17 @@ public class BoomEffect : MonoBehaviour
     public int particleNum = 10;
 
     public float boomForce = 0.5f;
-    
+
+    public float minScatter = 0.1f;
+    public float maxScatter = 0.3f;
+
     // Start is called before the first frame update
     void Start()
     {
         for (int i = 0; i < particleNum; i++)
         {
             GameObject effect = Instantiate(effectPrefeb, transform.position, Quaternion.identity);
-            float scaleFactor = Random.Range(0.2f, 0.3f);
+            float scaleFactor = Random.Range(minScatter, maxScatter);
             effect.transform.localScale = Vector3.one * scaleFactor; // 每个方块大小不一样
             Rigidbody rigid = effect.GetComponent<Rigidbody>();
             if (rigid)
@@ -30,6 +33,6 @@ public class BoomEffect : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-
+        Destroy(gameObject);
     }
 }

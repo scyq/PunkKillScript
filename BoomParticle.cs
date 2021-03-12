@@ -1,10 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Experimental.GlobalIllumination;
+using UnityEngine.Serialization;
 
 public class BoomParticle : MonoBehaviour
 {
     public float effectLastTime = 2f;
+    public Light light;
     
     private MeshRenderer _mesh;
     private float _currentLastTIme;
@@ -18,6 +21,7 @@ public class BoomParticle : MonoBehaviour
         _mesh = GetComponent<MeshRenderer>();
         _mesh.material.SetColor("_EmissionColor", Utils.GetRandomLightColor());
         Color materialColor = _mesh.material.GetColor("_EmissionColor");
+        light.color = materialColor;
         _r = materialColor.r;
         _g = materialColor.g;
         _b = materialColor.b;

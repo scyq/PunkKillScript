@@ -8,6 +8,7 @@ public class SinglePlayerMovement : MonoBehaviourPun
 {
 
     public float moveSpeed = 10f;
+    public GameObject Line;
     
     private Rigidbody _rb;
     private float _inputHorizontal;
@@ -22,15 +23,21 @@ public class SinglePlayerMovement : MonoBehaviourPun
     {
         _rb = GetComponent<Rigidbody>();
         _movement = new Vector3();
+        
+    }
+
+    private void Awake()
+    {
+        if (photonView.IsMine)
+        {
+            Line.SetActive(true);
+        } 
     }
 
     // Update is called once per frame
     void Update()
     {
-        // 如果没连上服务器就滚蛋
-        if (!(photonView.IsMine && PhotonNetwork.IsConnected))
-            return;
-        
+
         _inputHorizontal = Input.GetAxisRaw("Horizontal");
         _inputVertical = Input.GetAxisRaw("Vertical");
         
@@ -44,9 +51,7 @@ public class SinglePlayerMovement : MonoBehaviourPun
 
     private void FixedUpdate()
     {
-        // 如果没连上服务器就滚蛋
-        if (!(photonView.IsMine && PhotonNetwork.IsConnected))
-            return;
+
         
         _movement.Set(_inputHorizontal, 0, _inputVertical);
         _rb.velocity = _movement.normalized * moveSpeed;
